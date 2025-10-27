@@ -272,7 +272,6 @@ use Illuminate\Support\Facades\Auth;
     <?php echo app('Illuminate\Foundation\Vite')('resources/js/app.js'); ?>
 
     <script>
-        // Funções SIMPLES para controlar o sidebar
         function openSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobileOverlay');
@@ -305,21 +304,18 @@ use Illuminate\Support\Facades\Auth;
             }
         }
 
-        // Fechar sidebar com ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeSidebar();
             }
         });
 
-        // Fechar sidebar ao redimensionar para desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth >= 1024) {
                 closeSidebar();
             }
         });
 
-        // Inicialização - garantir que em desktop não tenha classes mobile
         document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth >= 1024) {
                 const sidebar = document.getElementById('sidebar');

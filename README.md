@@ -1,61 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">📊 EmpresaManager</h1>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+💼 Sistema de gestão empresarial com Laravel, Livewire e Tailwind CSS. Administra grupos econômicos, bandeiras, unidades e colaboradores de forma prática e moderna.
 </p>
 
-## About Laravel
+<p align="center">
+<img src="https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" />
+<img src="https://img.shields.io/badge/PHP-8.3-777BB4?style=for-the-badge&logo=php&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-8.x-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Livewire-3.x-4E56A6?style=for-the-badge&logo=laravel&logoColor=white" />
+<img src="https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/Maatwebsite-Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" />
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📦 Instalação (Windows / Linux)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🧰 Requisitos
 
-## Learning Laravel
+* PHP 8.2+
+* Composer 2.x
+* MySQL 8.x
+* Node.js 18+ / NPM 9+
+* Laravel 11
+* Git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ⚙️ Passo a passo
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+# Clonar o repositório
+git clone https://github.com/seu-usuario/gestao-grupos.git
+cd gestao-grupos
 
-## Laravel Sponsors
+# Instalar dependências
+composer install
+npm install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Criar e configurar .env
+cp .env.example .env
+php artisan key:generate
 
-### Premium Partners
+# Configurar banco
+# (edite DB_DATABASE, DB_USERNAME, DB_PASSWORD no .env)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Migrar e popular banco
+php artisan migrate --seed
 
-## Contributing
+# Criar link de storage
+php artisan storage:link
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Compilar assets
+npm run dev
 
-## Code of Conduct
+# Rodar servidor Laravel
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+💡 Em outro terminal:
 
-## Security Vulnerabilities
+```bash
+php artisan queue:work
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## ☕ Uso do Sistema
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Acesse [http://127.0.0.1:8000](http://127.0.0.1:8000)
+2. Clique em **Registrar** e crie seu usuário
+3. Faça login
+4. Use o painel para:
+
+   * Criar **Grupos Econômicos**
+   * Adicionar **Bandeiras**
+   * Cadastrar **Unidades** com CNPJ válido
+   * Adicionar **Colaboradores**
+   * Gerar **Relatórios Excel**
+   * Visualizar **Auditoria**
+
+---
+
+## 🪄 Funcionalidades Principais
+
+| 🔧 Recurso         | Descrição                                 |
+| ------------------ | ----------------------------------------- |
+| 🏢 Grupo Econômico | CRUD completo com auditoria               |
+| 🏷️ Bandeira       | Vinculada ao grupo econômico              |
+| 🏬 Unidade         | Validação de CNPJ, associada à bandeira   |
+| 👥 Colaborador     | Vinculado à unidade                       |
+| 📊 Relatórios      | Filtros dinâmicos + exportação Excel      |
+| 🔐 Autenticação    | Laravel Breeze (Login e Registro)         |
+| 🧾 Auditoria       | Registro de alterações com usuário e data |
+| ⚙️ Filas           | Exportações processadas em background     |
+
+---
+
+## 🧪 Testes
+
+Rodar todos os testes:
+
+```bash
+php artisan test
+```
+
+Testar manualmente os CRUDs via navegador ou Postman.
+
+---
+
+## 🧰 Tecnologias
+
+| Tecnologia        | Uso                     |
+| ----------------- | ----------------------- |
+| Laravel 11.x      | Backend principal       |
+| Livewire 3.x      | Componentes dinâmicos   |
+| Tailwind CSS      | Front-end moderno       |
+| Breeze            | Autenticação simples    |
+| Maatwebsite/Excel | Exportação Excel        |
+| Queue / Jobs      | Processos em background |
+| PHPUnit           | Testes automatizados    |
+
+---
+
+## 🧱 Desenvolvimento
+
+### Rodar ambiente completo:
+
+```bash
+php artisan serve
+npm run dev
+php artisan queue:work
+```
+
+### Testar dados diretamente:
+
+```bash
+php artisan tinker
+```
+
+---
+
+## 📫 Contribuindo
+
+```bash
+git checkout -b minha-feature
+git commit -m "Nova funcionalidade"
+git push origin minha-feature
+```
+
+---
+
+## 🤝 Colaboradores
+
+| Nome              | Função                  |
+| ----------------- | ----------------------- |
+| **Igor Gabriel**  | 💻 Full Stack Developer |
+| **Space Studios** | 🎮 Games & Apps         |
+
+---
+
+## 📝 Licença
+
+MIT – veja [LICENSE](LICENSE)
+
+---
+
+## 🖼️ Prints
+
+<p align="center">
+<img src="./img/dashboard.png" width="800" alt="Dashboard GIF" /><br/>
+<sub>Dashboard interativo</sub>
+</p>
+
+<p align="center">
+<img src="./img/colaboradores.png" width="800" alt="Cadastro Colaboradores GIF" /><br/>
+<sub>Cadastro de colaboradores</sub>
+</p>
+
+---
