@@ -187,7 +187,6 @@ git push origin minha-feature
 | Nome              | Função                  |
 | ----------------- | ----------------------- |
 | **Igor Gabriel**  | 💻 Full Stack Developer |
-| **Space Studios** | 🎮 Games & Apps         |
 
 ---
 
