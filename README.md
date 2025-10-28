@@ -32,18 +32,36 @@
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/gestao-grupos.git
-cd gestao-grupos
+git clone https://github.com/igor488/EmpresaManager-Desenvolvedor-Full-Stack.git
+cd EmpresaManager-Desenvolvedor-Full-Stack
 
 # Instalar dependências
 composer install
+
+# ⚙️ Livewire (componentes dinâmicos)
+composer require livewire/livewire
+
+# 🧾 Exportação para Excel
+composer require maatwebsite/excel
+
+# 🧮 Validação de CNPJ/CPF
+composer require geekcom/validator-docs
+
 npm install
 
 # Criar e configurar .env
 cp .env.example .env
+# ou para windows
+copy .env.example .env
 php artisan key:generate
 
 # Configurar banco
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestao_grupos
+DB_USERNAME=root
+DB_PASSWORD=suasenha
 # (edite DB_DATABASE, DB_USERNAME, DB_PASSWORD no .env)
 
 # Migrar e popular banco
@@ -55,7 +73,7 @@ php artisan storage:link
 # Compilar assets
 npm run dev
 
-# Rodar servidor Laravel
+# Outro terminal para rodar servidor Laravel
 php artisan serve
 ```
 
@@ -80,6 +98,18 @@ php artisan queue:work
    * Adicionar **Colaboradores**
    * Gerar **Relatórios Excel**
    * Visualizar **Auditoria**
+
+🧾 Validação de CNPJ
+
+O CNPJ precisa ser real para ser aceito no sistema.
+
+Teste com os exemplos abaixo:
+
+| Empresa         | CNPJ válido        | CNPJ inválido (para teste) |
+| --------------- | ------------------ | -------------------------- |
+| Petrobras       | 33.000.167/0001-01 | 11.111.111/1111-11         |
+| Caixa Econômica | 00.360.305/0001-04 | 12.345.678/9012-34         |
+| Banco do Brasil | 00.000.000/0001-91 | 00.000.000/0000-00         |
 
 ---
 
@@ -170,13 +200,18 @@ MIT – veja [LICENSE](LICENSE)
 ## 🖼️ Prints
 
 <p align="center">
-<img src="./img/dashboard.png" width="800" alt="Dashboard GIF" /><br/>
+<img src="./img/dashboard.png" width="800" alt="Dashboard img" /><br/>
 <sub>Dashboard interativo</sub>
 </p>
 
 <p align="center">
-<img src="./img/colaboradores.png" width="800" alt="Cadastro Colaboradores GIF" /><br/>
+<img src="./img/colaboradores.png" width="800" alt="Cadastro Colaboradores img" /><br/>
 <sub>Cadastro de colaboradores</sub>
 </p>
 
+## ⏱️ Tempo de Desenvolvimento
+
+- **4 dias** para desenvolvimento do sistema  
+- **1 dia** para correção de bugs e testes  
+- **1 dia** para documentação (README)
 ---

@@ -66,81 +66,66 @@ class Unidades extends Component
         $this->resetErrorBag();
     }
 
-    // Formatação automática do CNPJ
-    public function updatedCnpj($value)
-    {
-        // Remove tudo que não é número
-        $cnpj = preg_replace('/[^0-9]/', '', $value);
-        
-        // Aplica a formatação
-        if (strlen($cnpj) <= 14) {
-            if (strlen($cnpj) <= 2) {
-                $this->cnpj = $cnpj;
-            } elseif (strlen($cnpj) <= 5) {
-                $this->cnpj = substr($cnpj, 0, 2) . '.' . substr($cnpj, 2);
-            } elseif (strlen($cnpj) <= 8) {
-                $this->cnpj = substr($cnpj, 0, 2) . '.' . substr($cnpj, 2, 3) . '.' . substr($cnpj, 5);
-            } elseif (strlen($cnpj) <= 12) {
-                $this->cnpj = substr($cnpj, 0, 2) . '.' . substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8);
-            } else {
-                $this->cnpj = substr($cnpj, 0, 2) . '.' . substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8, 4) . '-' . substr($cnpj, 12, 2);
-            }
-        }
-    }
-
     //Formatar CNPJ para exibição
     private function formatarCnpj($cnpj)
     {
         $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
         if (strlen($cnpj) === 14) {
-            return substr($cnpj, 0, 2) . '.' . 
-                   substr($cnpj, 2, 3) . '.' . 
-                   substr($cnpj, 5, 3) . '/' . 
-                   substr($cnpj, 8, 4) . '-' . 
+            return substr($cnpj, 0, 2) . '.' .
+                   substr($cnpj, 2, 3) . '.' .
+                   substr($cnpj, 5, 3) . '/' .
+                   substr($cnpj, 8, 4) . '-' .
                    substr($cnpj, 12, 2);
         }
         return $cnpj;
     }
 
-    public function store()
-    {
-        // Remove formatação antes de validar
-        $cnpjSemFormatacao = preg_replace('/[^0-9]/', '', $this->cnpj);
-        
-        // Validação customizada para garantir o formato correto
-        $this->validate([
-            'nome_fantasia' => 'required|string|max:255',
-            'razao_social' => 'required|string|max:255',
-            'bandeira_id' => 'required|exists:bandeiras,id',
-            'cnpj' => [
-                'required',
-                'string',
-                $this->unidade_id ? '' : 'unique:unidades,cnpj',
-                function ($attribute, $value, $fail) use ($cnpjSemFormatacao) {
-                    if (strlen($cnpjSemFormatacao) !== 14) {
-                        $fail('O CNPJ deve conter 14 dígitos.');
-                    }
+   public function store()
+{
+    // Remove formatação antes de validar
+    $cnpjSemFormatacao = preg_replace('/[^0-9]/', '', $this->cnpj);
+
+    // Validação customizada
+    $this->validate([
+        'nome_fantasia' => 'required|string|max:255',
+        'razao_social' => 'required|string|max:255',
+        'bandeira_id' => 'required|exists:bandeiras,id',
+        'cnpj' => [
+            'required',
+            'string',
+            function ($attribute, $value, $fail) use ($cnpjSemFormatacao) {
+                if (strlen($cnpjSemFormatacao) !== 14) {
+                    $fail('O CNPJ deve conter 14 dígitos.');
+                    return;
                 }
-            ],
-        ]);
 
-        try {
-            Unidade::updateOrCreate(
-                ['id' => $this->unidade_id],
-                [
-                    'nome_fantasia' => $this->nome_fantasia,
-                    'razao_social' => $this->razao_social,
-                    'cnpj' => $cnpjSemFormatacao,
-                    'bandeira_id' => $this->bandeira_id
-                ]
-            );
+                // Instancia a regra customizada e verifica
+                $cnpjRule = new CnpjValido();
+                if (!$cnpjRule->passes($attribute, $value)) {
+                    $fail($cnpjRule->message());
+                }
+            },
+            $this->unidade_id ? '' : 'unique:unidades,cnpj'
+        ],
+    ]);
 
-            session()->flash('message', $this->unidade_id ? 'Unidade atualizada!' : 'Unidade criada!');
-            $this->closeModal();
-        } catch (\Exception $e) {
-            session()->flash('error', 'Erro ao salvar unidade: ' . $e->getMessage());
-        }
+    try {
+        Unidade::updateOrCreate(
+            ['id' => $this->unidade_id],
+            [
+                'nome_fantasia' => $this->nome_fantasia,
+                'razao_social' => $this->razao_social,
+                'cnpj' => $cnpjSemFormatacao,
+                'bandeira_id' => $this->bandeira_id
+            ]
+        );
+
+        session()->flash('message', $this->unidade_id ? 'Unidade atualizada!' : 'Unidade criada!');
+        $this->closeModal();
+    } catch (\Exception $e) {
+        session()->flash('error', 'Erro ao salvar unidade: ' . $e->getMessage());
     }
+}
 
     public function edit($id)
     {
@@ -149,10 +134,10 @@ class Unidades extends Component
             $this->unidade_id = $id;
             $this->nome_fantasia = $unidade->nome_fantasia;
             $this->razao_social = $unidade->razao_social;
-            
+
 
             $this->cnpj = $this->formatarCnpj($unidade->cnpj);
-            
+
             $this->bandeira_id = $unidade->bandeira_id;
             $this->openModal();
         } catch (\Exception $e) {

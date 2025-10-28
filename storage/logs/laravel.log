@@ -1712,3 +1712,20 @@
 #12 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
 #13 {main}
 "} 
+[2025-10-28 04:57:18] local.ERROR: Call to undefined function Illuminate\Support\mb_split() {"exception":"[object] (Error(code: 0): Call to undefined function Illuminate\\Support\\mb_split() at \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Str.php:1689)
+[stacktrace]
+#0 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php(98): Illuminate\\Support\\Str::studly()
+#1 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php(78): Illuminate\\Support\\Manager->createDriver()
+#2 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\maatwebsite\\excel\\src\\SettingsProvider.php(31): Illuminate\\Support\\Manager->driver()
+#3 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\maatwebsite\\excel\\src\\SettingsProvider.php(25): Maatwebsite\\Excel\\SettingsProvider->configureCellCaching()
+#4 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\maatwebsite\\excel\\src\\ExcelServiceProvider.php(52): Maatwebsite\\Excel\\SettingsProvider->provide()
+#5 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1194): Maatwebsite\\Excel\\ExcelServiceProvider->{closure:Maatwebsite\\Excel\\ExcelServiceProvider::boot():51}()
+#6 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1137): Illuminate\\Foundation\\Application->fireAppCallbacks()
+#7 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#8 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(342): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#9 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(473): Illuminate\\Foundation\\Application->bootstrapWith()
+#10 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(195): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#11 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 \\\\WSL.LOCALHOST\\UBUNTU-22.04\\home\\igor\\gestao-grupos\\artisan(16): Illuminate\\Foundation\\Application->handleCommand()
+#13 {main}
+"} 
